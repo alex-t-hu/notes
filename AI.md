@@ -1,3 +1,19 @@
+>**MCTS**
+>
+
+>**Formal reasoning**
+>Learning Formal Mathematics From Intrinsic Motivation
+>- compared to games, theorem proving requires intrinsic rewards when conjectures are proven
+>- can train a LLM that is both a conjecturer, generating statements to prove, a policy, and a value function
+>- conjecturing uses constrained decoding to output conjectures following the language
+>- when the LLM is proving with MCTS, we can extract true conjectures along the way with hindsight relabeling
+>- value function is trained to be 1 if along proof path and 0 otherwise
+>- conjecture difficulty measured by log-likelihood and we aim to make it increase
+>- how is decoding performed with the value function?
+
+>**Redteaming**
+>- goal for attack $g=(instruction, criteria)\sim A_{G}$, example attack $x_g$ , and rule-based reward $x_r$. Try to increase diversity of generated attacks using cosine similarity, except we orthogonalize by goal similarity
+
 >**Architecture**
 >- DeepSeek MLA (multi-head latent attention). combine key and value into single latent
 >- DeepSeek MOE - segment experts into finer granularity for higher specialization and more accurate knowledge acquisition, outperforms GShard

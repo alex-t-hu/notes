@@ -16,7 +16,7 @@ MST improve by running Prim until k heap nodes, then contracting, then repeating
 - m + t log k, so k = 2^(m/t). t' <= m/k, k' = 2^(m/t') >= 2^ k, k' <= n so not too many iterations
 - for Dijkstra can't contract, fail
 
-#### Persistence
+### Persistence
 Ephemeral, Partial Persistence (update recent, query past), Full Persistence (update past, query past). Persistent tree:
 - fat node: history of each node, binary search $\log{t}$ x everything
 - path copying: construct a path corresponding to each update $\log t + \log n$ . $n\log n$ construction
@@ -139,12 +139,10 @@ $d_1=(1-\epsilon^2),d_i\sim (1-\epsilon^2)^{-1}$ and final to initial volume rat
 
 >**Knapsack problem** with max profit $P$ and $n$ items and integer profits can be solved in $nP$ time with DP! This is Pseudopolynomial, because exponential in bitsize, so weakly NP-hard
 
-
 rounding technique - $\epsilon$ approximation by scale profits to $\lfloor \frac{n}{\epsilon P'}p_{i}\rfloor$ , so new opt is between $\frac{Pn}{P'\epsilon}-n$ and $\frac{Pn}{P'\epsilon}$ , so DP runtime is $\frac{Pn^2}{P'\epsilon}$ . we don't know $P'$ but can try $1,2,4,\dots$ by running DP with fixed $\epsilon$ , and then run DP. this gives $n^2\log n + n^2/\epsilon$ . this example of pseudopoly algo giving FPAS. conversely, FPAS to pseudo poly by say input problem has integers at most $t$, then $\epsilon=\frac{1}{nt+1}$   solves.
 
 >**Pseudopolynomial knapsack** - 
 >https://arxiv.org/pdf/2308.04093 https://dl.acm.org/doi/pdf/10.1145/3618260.3649719
->
 
 >**Online scheduling** - $m$ jobs and $n$ computers. Greedily can assign the job to the computer with least load, and achieve $2-\frac{1}{m}$ because optimal at least $\frac{1}{m}\sum p_j$ and $\max p_j$ , and say our max load machine had $L$ before adding $p_j$ to it; then $L+p_j/m\le OPT$ and $L+p_j \le (2-1/m)OPT$ 
 >Longest-processing-time-first offline scheduling - same as before but sort by decreasing time. $4/3$ 
@@ -446,8 +444,20 @@ $$\varphi_{i,a_i}\equiv \frac{x_{i,a_i}+\text{pos}(r_{i,a_i}(x_1\dots x_n))}{1+\
 >$\sigma^2(x)=K(x,x)-K(x,x_i)(K(x_i,x_j))^{-1}K(x,x_i)$ 
 >**Acquisition functions** (for minimization) are **Expected improvemenet** $EI(x)=\mathbb{E}_{\tilde{f}}\left[ \max(0, f_* - \tilde{f}(x)) \right]$ where $f_*$ is min value so far observed, or **LCB** $LCB(x)=\mu(x)-\beta\sigma(x)$ 
 ### Geometry
+>**Range queries**
 >$\log^d{n}$ query time, $n\log^{d-1}n$ space, $n\log^d n$ construction for finding statistics about $d$-dimensional points in rectangles
+>fractional cascading reduces by $\log n$ 
 
+>**Chan's algorithm** solves in $n\log h$ where $h$ is number of points on convex hull. It divides $n$ points into groups of size $m$, computes each group in $m\log m$ with vertical sweepline, and then does rotational sweepline. It increase $m$ from $1$ until hits $h$ 
+
+>**Duality** maps points to halfspaces, so intersections of halfspaces corresponds to convex hull
+
+>**Voronoi diagram** can be constructed by projecting $x,y\rightarrow x,y,x^2+y^2$ and doing 3D convex hull in $n\log n$ 
+>we do a horizontal sweepline moving down, and maintain sorted active points which form the frontier of parabolas
+>parabolas appear when new points are added, called site events, and parabolas disappear when when three consecutive parabolas intersect at some point, called circle events
+>we maintain sorted list of events, initialize with site events
+>Has a linear number of edges and vertices and $n$ faces by Euler's formula
+>Dual forms delauney triangulation, which maximizes the minimum angle
 ### Memory
 >M total memory, block size B, problem size N
 >matmuls can be done by splitting NxN into $(N/\sqrt{M})^2$ blocks and multiplying 

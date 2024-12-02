@@ -3,7 +3,7 @@
 
 >in a metric space, $d: M\times M\rightarrow \mathbb{R}_{\ge 0}$ satisfies triangle inequality and positive definite 
 >metric space $M$ is **bounded** if there exists constant $D$ with $d(p,q)\le D$ for all $p,q\in M$ 
->homeomorphism between $M$ and $N$ is a continuous bijection **and** inverse is continous
+>homeomorphism between $M$ and $N$ is a continuous bijection **and** inverse is continuous
 >sequence $x_1,\dots$ in metric space $M,d_M$ is **Cauchy** if for any $\epsilon>0$, $d_m(x_m,x_n)<\epsilon$ for sufficiently large $m,n$ . $\mathbb{Q}$ doesn't converge
 >$M$ is **complete** if every cauchy sequence converges
 >a set $U\subset M$ is **open** in $M$ if for each $p\in U$, some $r$-neighborhood is inside $U$ 

@@ -249,5 +249,7 @@ globalGet();
 >- **Exclusive** - cache line is only in current cache, but is clean
 >- **Shared** - may be stored in other caches and is clean
 >- **Invalid** 
+>**memory ordering** in multithreaded programs is saying that loads and stores can happen out of order. solved by putting fences, and additionally may need to use **volatile** keyword to tell compiler that other threads are changing variabels
+>**false sharing**
 >**ABA** problem in multi-threaded computing
 >- in a lock-free DS, when item is removed, deleted, and new item is added, it is common for new item to be at same location, causing problems

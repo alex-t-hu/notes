@@ -131,3 +131,8 @@ in the future, the **clockintr** in kernel/trap.c sends updates
 >L4 IPC - sync unbuffered consists of call() and sendrecv()
 >- send() recv() buffered
 >
+
+### Linux
+>dentry (directory entry) is component of Linux Virtual Filesystem layer representing a component of a file path, mapping it to its inode. dentries have pointers to parent and child dentries
+>Read-Copy update is synchronization method handling when readers outnumber writers. readers access shared data without locking, writers update via copy and swap, grace period management when no readers are using old data
+
