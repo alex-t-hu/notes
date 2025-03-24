@@ -1,3 +1,13 @@
+>**CUDA**
+>block-level scheduling, so need to wait for all warps to have enough registers and smem
+>Matmul 
+>- Each block computes some block of the output matrix
+>- loop along the K direction, and can optimize smem load using 4-wide and transposition
+>- Each warp computes an independent tile of the output block, called the **warp tile**
+>- Each thread most generally computes some grid of rectangles of the warp tile
+>- cutlass uses warp mma fragments to do this fast, for H100 is 16x16x16
+>- HGEMM (fp16), SGEMM (fp32),  IGEMM (integer), DGEMM (fp64), WGEMM (mixed)
+
 >**MCTS**
 >
 
@@ -23,7 +33,8 @@
  $x_k=\overline{A}x_{k-1}+\overline{B}u_k,y_k=\overline{C}x_k$ 
  $y=\overline{CA^iB}*u$ 
  "Liquid version"
- $x_k=(\overline{A}+\overline{B}u_k)x_{k-1}+\overline{B}u_k,y_k=\overline{C}x_k$ 
+ $x_k=(\overline{A}+\overline{B}u_k)x_{k-1}+\overline{B}u_k,y_k=\overline{C}x_k$
+ >Toeplitz: $A_{ij}=a_{i-j}$ Cauchy: $A_{ij}=1/(x_i-y_j)$ Vandermonde: $A_{ij}=x_i^j$ 
 
 >**Reinforcement Learning**
 >$R(\tau)=\sum_{t=0}^{\infty}\gamma^t r_t$ or $R(\tau)=\sum_{t=0}^{T}r_t$ 

@@ -1,4 +1,4 @@
-### Lox
+# Lox
 >**standard expression**. can directly implement with recursive descent parser.
 >- expression -> equality
 >- equality -> comparison ( ("!=" | "== ") comparison)\*
@@ -237,19 +237,18 @@ globalGet();
 >**optimize** interning by storing small enough strings inline in the value rather than on heap
 >- use bit tricks instead of modulo in the hashtable
 >- **Nan boxing** uses that 8-byte doubles have 51 extra bits not storing any information, and we only need 48 bits for memory
-### Architecture
->**cache line** - **tag, index, block offset**. the index indexes into the set; the set stores **ways** elements
->**__builtin_prefetch(addr)** pre-fetches cache line at addr. also the L1 or L2 prefetchers will perform prefetching automatically, and typically 10 L1 LFBs (can prefetch 10 cache lines at a time) and 24 L2 LFBs. Latency of L1, L2, L3, memory is 1.6ns (3 cycles), 5.6ns, 28ns, 120ns, and capacity of L1, L2, L3 cache is 32KB, 1MB, 32MB
->**funnel-sort** sorts $n^{1/3}$ groups of $n^{2/3}$ items and merges. Cache Complexity is $n/B\log_{M}n$ where $B$ is cache line size in elements and $M$ is cache size in elements, which is asymptotically optimal and improves upon naive mergesort by $\log M$ 
->**CAS(*result, old, new)*** compares old to \*result and sets \*result to new if equal
->- **lock-free** push and pop with CAS
->- optimize further by testing if \*result is old and then doing the CAS, and exponential backoff
->**MESI** protocol
->- **Modified** - cache line is only in current cache and dirty
->- **Exclusive** - cache line is only in current cache, but is clean
->- **Shared** - may be stored in other caches and is clean
->- **Invalid** 
->**memory ordering** in multithreaded programs is saying that loads and stores can happen out of order. solved by putting fences, and additionally may need to use **volatile** keyword to tell compiler that other threads are changing variabels
->**false sharing**
->**ABA** problem in multi-threaded computing
->- in a lock-free DS, when item is removed, deleted, and new item is added, it is common for new item to be at same location, causing problems
+# Decaf
+first 6 arguments %rdi, %rsi, %rdx, %rcx, %r8, %r9, rest right to left on stack
+caller owns %rsp, %rbp, %rbx, and %r12-%r15 callee-save registers
+callee owns %rax, %rcx, %rdx, %rsi, %rdi, and %r8-%r11 caller save registers
+
+memory-memory vs register-register register allocation
+jump table for switch statements
+optimizing a for loop by pre-computing the step
+local value numbering uses a hash table to remember previously computed values; superlocal does it for more blocks
+using a shallower tree to do adding
+calculate LIVEOUT recursively on the CFG
+compilers can do "profiling" to get hot paths in CFG
+UEVar - upwards exposed variables (used but not defined here)
+VarKill - variables defined but not used
+

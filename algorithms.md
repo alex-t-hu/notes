@@ -5,19 +5,21 @@ n vertices, m edges
 Prim: insert: n, decrease key m, extract min n
 Dijkstra: insert: n, decrease key m, extract min n
 d-heap : $\log_d{n}$,  $\log_d{n}$ , $d \log_d{n}$ for the three ops ($n$ is heapsize)
-fibonacci heap: $1$,  $1$ , $\log n$ 
+
+fibonacci heap: $1$, $1$, $\log n$
 - nums stored as bunch of heap-ordered-trees with ptr to smallest root
 - extract min splits the HOT with smallest root, merges HOT of same root degree.
 	- our potential is # of HOTs (non-negative), so each merge is decreasing potential by 1, so each merge is free
-	- we still have to scan max # of tree root degree buckets
+	- we still have to scan max # of tree root degree buckets which is $\log n$ 
 - decrease key finds the to-be-deleted node and chops off from parent. if its parent is not a root and loses its second child, the parent also gets chopped off. this is achieved by marking non-root nodes after their first kid gets chopped off, and un-marking root nodes.
+	- in general we can cut after losing $k$ kids, instead of marked nodes we have marked nodes with the number of children they lost.
 	- another benefit of marking, besides implementation, is it pays for cascading cuts if we set potential to be 2 x # marked nodes. we pay for cuts by reduce # marked nodes by 1 and increase # HOT's by 1
 MST improve by running Prim until k heap nodes, then contracting, then repeating. 
-- m + t log k, so k = 2^(m/t). t' <= m/k, k' = 2^(m/t') >= 2^ k, k' <= n so not too many iterations
+- $m + t \log k$ , so $k = 2^{m/t}$ . $t' \le m/k, k' = 2^{m/t'} \ge 2^k, k' \le n$  so not too many iterations
 - for Dijkstra can't contract, fail
-
 ### Persistence
-Ephemeral, Partial Persistence (update recent, query past), Full Persistence (update past, query past). Persistent tree:
+Ephemeral, Partial Persistence (update recent, query past), Full Persistence (update past, query past)
+Persistent tree
 - fat node: history of each node, binary search $\log{t}$ x everything
 - path copying: construct a path corresponding to each update $\log t + \log n$ . $n\log n$ construction
 - lazy path copying: potential as full alive nodes (in the most recent tree) so path copying is free
