@@ -19,5 +19,5 @@
 >- **T5 (completely normal)** - if $\overline{A}\cap B=A\cap \overline{B}=\emptyset$ , $A\subseteq U$ and $B\subseteq V$ for some open $U,V$ 
 >- 
 >
->
-Two maps $f:X\to Y$ and $g: Y \to X$ are homotopy equivalent  if fg=gf=identity
+
+Two maps $f:X\to Y$ and $g: Y \to X$ are homotopy equivalent  if $fg=gf=I$

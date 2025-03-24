@@ -251,4 +251,5 @@ calculate LIVEOUT recursively on the CFG
 compilers can do "profiling" to get hot paths in CFG
 UEVar - upwards exposed variables (used but not defined here)
 VarKill - variables defined but not used
+LiveOut - value is used after block finishes executing
 

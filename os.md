@@ -7,7 +7,6 @@ DACUXWRV
 
 pagetables - demand paging, copy on write, trampoline pages for transition during interrupts
 drivers - concurrency issues. "UART" interrupts. devintr handles. interrupts good if unpredictable times; polling is good for high rate
-
 ### trap
 **during a trap, execute the following unless the trap is a device interrupt and SIE bit is 0**
 - clear SIE bit
@@ -102,7 +101,6 @@ in the future, the **clockintr** in kernel/trap.c sends updates
 ### scheduling
 - there are many processes that can execute user and kernel code, and also scheduler threads to schedule the processes. scheduler separate from process because we don't wanna use the same stack on two different CPUs, and also we want to have multiple CPUs running schedulers at the same time.
 - **swtch** saves the callee-saved registers only, because the caller-saved registers can be restored by the caller
-
 ### Locks
 >bcache.lock - protects allocation of block buffer cache entires
 >cons.lock - serializes access to console hardware, avoids intermixed output
@@ -130,7 +128,6 @@ in the future, the **clockintr** in kernel/trap.c sends updates
 ### Microkernel
 >L4 IPC - sync unbuffered consists of call() and sendrecv()
 >- send() recv() buffered
->
 
 ### Linux
 >dentry (directory entry) is component of Linux Virtual Filesystem layer representing a component of a file path, mapping it to its inode. dentries have pointers to parent and child dentries
