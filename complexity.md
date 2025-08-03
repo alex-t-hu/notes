@@ -104,7 +104,7 @@ $\Pi_k$-SAT is $\{ \forall x_{1,1}\dots x_{1,m_1} \exists \dots \phi(x) | \phi \
 when does $\Sigma_k$ or $\Pi_k$ (we include all languages that are complete to $\Sigma_k$-SAT or $\Pi_k$-SAT) include $\Sigma_{k+1},\dots$
 If P=NP, then PH is a subset of P. Sketch: Show $\Sigma_2 \subset P$ 
 
-karp-lipton: if $NP\subseteq P/poly$, $\Sigma_2=\Pi_2$ . intuitively, using $\Sigma_2$, we can guess a polynomial size circuit for SAT and then force it to work, and then use it to do stuff
+**karp-lipton:** if $NP\subseteq P/poly$, $\Sigma_2=\Pi_2$ . intuitively, using $\Sigma_2$, we can guess a polynomial size circuit for SAT and then force it to work, and then use it to do stuff
 we need to verify $c$ is indeed a circuit solving SAT; this is in $\Pi_1$
 - for every pair $(s,z)$ where $s$ is an instance of SAT and $x$ is a solution, $c(s)$ must be true
 - for every instance $s$ where $c(s)$ is true, $s$ must be solvable (this one is by using $c(s)$ repeatedly to try to construct some solution)
@@ -117,12 +117,131 @@ we can get stronger results by fixing $k$: $\Sigma_4 \not\subseteq Size(n^k)$
 so actually $\Sigma_2 \not\in Size(n^k)$ 
 
 $AC_i$ are functions computed by circuit families with $size(C_n)\le n^{O(1)}$ and $depth(C_n)\le O(\log^i n)$ , and $NC_i$ consists functions computed by $AC_i$ with fanin at most 2 (easier to assume not gates are pushed down to inputs). $AC_i\subseteq NC_{i+1} \subseteq AC_{i+1}$ . Any circuit of polynomial size computing Parity of $x_1\dots x_n$ has depth at least $\Omega(\log n/\log \log n)$
+CNF - And of Ors. DNF - Or of Ands.
+
+> **Circuit lower bound**
+> - $AC_0$
+> 	- For all $d\ge 2$, Parity of circuit of depth $d$ and size $2^{O_d(n^{1/(d-1)})}$ by clumping groups of size $n^{1/(d-1)}$
+> 	- A $s$ restriction for $f:\{0,1\}^n\rightarrow\{0, 1\}$ is when restricting to $s$ vars
+> 	- If $d\le \log n / \log \log n$, any depth $d$ circuit for Parity requires size $2^{\Omega(n^{1/(d-1)})}$ 
+> 		- **Halsted switching lemma** - let $f$ be a width $w$ DNF formula (each term has at most $w$ things ANDed together). $Pr_{\rho \in R(s,n)}\left[ DT(f|_\rho) > t \right] \le (10pw)^t$
+> 		- We can replace the first two layers with a formula with the order of ANDs and ORs switched to merge into the next layer, which reduces depth by 1. This only works if we take a suitable random restriction, so that we can guarantee the tree depth of the first two layers is small, so we don't increase circuit complexity too much. Crucially, the restriction of parity is parity, with a constant shift. We keep reducing depth until depth 2, where we know at least $n2^n$ gates required.
+> - $AC_0\left[ p \right]$ is circuits with polynomial size, constant depth, and unbounded fan in with gates and or not $Mod_p$ 
+> 	- $MOD_p: \{0, 1\}^n \rightarrow \{0, 1\}$ is 1 if the sum is non-zero mod p. 
+> 	- For $p\neq p'$, $MOD_p$ can't be computed by $AC_0\left[ p'\right]$ circuits. Depth $d$ circuit requires size at at least $2^{\Theta_{p,p'}(n^{1/(2d)})}$
+> 		- We solve for the $2,3$ case
+> 			- Gates can be approximated by low-degree polynomial distribution. Induct over the $d$ layers, there exists a distribution $P$ of polynomial from $\mathbb{F}_3^n$ to $\mathbb{F}_3$ of degree at most $(2t)^d$ such that for all $x\in \{0, 1\}^n$, $Pr_{p\sim P}\left[ p(x)\neq C(x) \right]\le S3^{-t}$ 
+> 			- It's hard for a $\mathbb{F}_3$ polynomial to compute sum mod 2 - $Pr_{x\in \{0,1\}^n} p(x)=MOD_2(x) \le 1/2 + O(D/\sqrt{n})$
+> 		- $AC_0\left[m\right]$ is harder. If ACC allows any MOD gates, $NTIME(2^{poly(\log n)}) \not\subseteq ACC$ is strongest result.
+### Finite field
+the probability of a non-zero d-degree multi-variate function equaling 0 in a field $\mathbb{F}_q$ is at most $d/q$
+
 ## Interactive Proving systems
+$IP$ consists of languages $A$ for which there is an interactive protocol $(V,P)$ , $V$ is a probabilistic polynomial time TM and $P$ is all-powerful, such that on an input $x$ over $p(n)$ rounds messages are sent, and
+For every $x\in A$, $Pr\left[ (V,P)(x) \right]\ge 2/3$ and for every $x\not\in A$ and every prover $P^*$, $Pr\left[ (V,P^*)(x) \right]\le 1/3$ 
 
->**IP=PSPACE** 
->Graph Non Isomorphism is $\{ (G_1,G_2) | \text{the graphs aren't isomorphic} \}$ 
+>**IP$\subseteq$PSPACE**
+>IP solves for $a(v)$, the probability verifier accepts after all that has happened $v$. Let $r$ be the starting node, $a(r)=\max_{P^*} Pr(V,P)(x)$ accepts
 
->PCPs and Hardness of Approximation
->Probabilistically Checkable Proofs
->**Clique** decision problem is does $G$ contain a clique of size $\ge k$ . optimization is find size of largest clique, which is NP-hard, and also even $\alpha$-approx is NP-hard
+>**#3-SAT** is the counting of the number of solutions to a 3-SAT formula. It is in IP.
+>	- the number of solutions is the sum of the polynomial, $\phi$ over all $2^n$ inputs
+>	- prover sends verifier **a polynomial** of what happens if we replace first $k$ inputs of $\phi$ with random stuff, next input as a variable, and sum over remaining variables
+>	- there's this "chain" where the validity of each polynomial can be faked but with a low probability
+
+>Graph Non Isomorphism is $\{ (G_1,G_2) | \text{the graphs aren't isomorphic} \}$
+>the verifier chooses a random graph, and then sends a permuted version of that graph $H$ to the prover
+>the prover outputs which graph is isomorphic to $H$
+
+>**IP=PSPACE**. Suffices to show TQBF is in IP
+>Let $\psi = \exists x_1 \forall x_2 \dots \varphi(x_1,\dots x_n)$ and $\psi'=\exists x_1 L_{\le 1} \dots Q_{n}x_n L_{\le n} \varphi(x_1,\dots x_n)$
+>- Verifier sets $t=1,c_t=1$
+>- Prover sends $f_t(x_t, x_{t+1},\dots)$ which is $\psi'$ with $x_1=\alpha_1,\dots x_{t-1}=\alpha_{t-1}$
+>- Verifier checks $\alpha_t = f_t(0, \dots)\cdot f_t(1, \dots)$ if $Q_t=\forall x_t$ and $1-(1-f_t(0,\dots)) (1-f_t(1,\dots))$ if $Q_t=\exists x_t$
+>- Verifier checks that $\alpha_n=f_n(\alpha_1,\dots \alpha_n)$
+>- if $\psi\not\in A$, $(V,P)(\psi)$ mistakenly accepts iff at least one of the $f_t$ is fake. Degree of $f_t$ is at most $n^3$, so by union bound we have at most $n^4/q$ error probability
+
+>**MIP=NEXP** - multiple non-communicating provers, where $k$ is polynomial in $n$.
+>**Succint-3-SAT** - NEXP-complete under polynomial time reductions. It is a formula $\phi_C$ on $2^n$ variables where circuit $C:\{0, 1\}^{n+1}\times \{0, 1\}^{n+1}\times \{0, 1\}^{n+1}\rightarrow \{0, 1\}$ describes the clause is in the formula
+>Combine sum-check with low-degree tester. Turns out we need only 2 provers.
+
+>**Low degree testing problem**
+>Provers $P_1,\dots P_k$ jointly hold $\tilde{A}: \mathbb{F}_q^n \rightarrow \mathbb{F}_q$, verifier needs to verify the function is low degree. So, the verifier chooses lines and queries the provers on the line; then, it is a 1-dimensional function so easy to verify degree.
+
+### PCPs and Hardness of Approximation
+>**weak PCP formulations**
+>NP is languages with 2-Prover-1-Round-game protocol $(V,P_1,P_2)$. Verifier samples $O(\log |x|)$ random bits, sends message of length at most $O(\log |x|)$ to each prover, receives response of length $O(1)$ from each, decides to accept/reject $x$ accordingly
+>For every $x\in A$, $Pr\left[ (V,P_1,P_2)(x)\right]=1$. There is $\epsilon$ such that for every $x\not\in A$, $Pr\left[ (V,P_1,P_2)(x) \right]<1-\epsilon$
+>
+>A PCP verifier $V_{PCP}$ for a language $A$ is a probabilistic TM that gets as input $x\in \Sigma^*$ and oracle access to witness $w\in \Gamma^*$ with $|\Gamma|=O(1)$. Verifier uses $O(\log |x|)$ random bits and based on them and $x$ chooses 2 locations $i_1,i_2$ and accepts based on $w_{i_1},w_{i_2}$.
+>If $x\in A$, exists witness $w$ with $Pr\left[V_{PCP}(x,w)=1 \right]=1$ and if $x\not\in A$, for all $w$, $Pr\left[ V_{PCP}(x,w)=1 \right]<1-\epsilon$
+>Any language $A\in NP$ has a PCP verifier since we can take the 2P1R protocol and extract from the witness which is the truth tables of the provers the prover's responses
+>
+>**Label cover** involves $\Psi=(G=(V,E),\Gamma,\Phi=\{\Phi_e\}_{e\in E}$ where $\Phi_e\subseteq \Gamma\times\Gamma$ and $|\Gamma|$ is the alphabet size. An assignment is a labeling $A: V\rightarrow \Gamma$  and we're trying to maximize
+>$val(\Psi)=|\{e=(u,v)\in E| (A(u),A(v))\in \Phi_e \}| / |E|$ 
+>**gap-LabelCover**$\left[ c,s\right]$ has input $\Psi$ where we're promised that $val(\Psi)\ge c$ (yes case) or $val(\Psi)\le s$ (no case), and $M$ solves it if it always accepts on yes case and rejects on no case
+>- gap-LabelCover$\left[1, 1-\epsilon\right]$ is NP-hard for some $|\Gamma|=k$, $\epsilon$, using the 2-Prover-1-Round protocol to construct a bipartite graph with vertices based on $P_1$'s and $P_2$'s responses to $V$'s questions
+> - **gap-3SAT**$\left[c, s\right]$ is where one is given a 3CNF formula $\phi$ with $val(\phi)\ge c$ or $val(\phi)<s$ and need to distinguish (val($\phi$) is the max fraction of clauses that $A$ satisfies). There exists $\epsilon>0$ with $(1,1-\epsilon)$ is NP-hard
+
+>**weak PCP reductions**
+>**gap-IS** - There exist $\epsilon$ where gap-IS$\left[ 1/7, 1/7(1-\epsilon)\right]$ is NP-hard. Given a 3CNF formula we expand each clause into 7 nodes of a graph, and draw edge between $(c_i,\alpha)$ and $(c_j,\beta)$ if $c_i,c_j$ share a variable and $\alpha(x_k)\neq \beta(x_k)$. 
+>**Amplification**: $\exists \epsilon > 0$, $\forall \ell \in \mathbb{N}$, gap-IS$\left[ 1/7^ \ell, 1/7^ \ell (1-\epsilon)^{\ell}\right]$ is NP-hard implies $\forall 0<\alpha < 1$, approximating IS within factor $\alpha$ is NP-hard. we do so by constructing an expanded graph with nodes equal to $\ell$-tuples of nodes of $G$, and edges whenever at least one of the $\ell$ pairs of nodes is connected in $G$
+>we can flip this to get gap-Vertex Cover$\left[ 6/7, (6+\epsilon)/ 7\right]$. vertex cover has a trivial 2-approx., conjectured optimal
+>Does $G$ contain a clique of size $\ge k$? $\alpha$-approx is NP-hard
+
+> **Strong PCP Theorem** - $\forall \epsilon > 0$, $\exists k \in \mathbb{N}$ s.t. gap-ProjLabelCover$\left[ 1,\epsilon\right]$ is NP-hard on bi-regular / (bipartite weaker, proved in class) graphs and alphabet size $\le k$
+> Parallel Repetition to improve soundness - $L^t$ and $R^t$, and also $E_t = \{ ( (u_1,\dots, u_t), (v_1,\dots v_t) ) | (u_i, v_i) \in E \forall i =1,\dots t\}$, and $\phi_e(\sigma_1, \dots \sigma_t) = (\phi_{e_1}(\sigma_1), \dots \phi_{e_t}(\sigma_t))$.
+> if $val(\Psi)\le 1-\epsilon$, then $val(\Psi^{\otimes t}) \le (1-e')^t$ where $\epsilon'=\Theta(\epsilon^2)$
+> Counterexample to naive parallel repetition of 2-prover-1-round-game protocol
+> - Verifier samples random bits $b_1,b_2$ to send to each prover; provers sample $(i_1,a_1),(i_2,a_2)\in \{1, 2\}\times \{0, 1\}$ and verifier accepts if $i_1=i_2,a_1=a_2=b_1$. Turns out $val(NA)=val(NA^{\otimes 2})$
+
+>**Strong PCP reductions**
+>3SAT - left vertices are clauses; right are vertices
+>
+>setCover - with weak PCP, we can reduce from vertex cover to get gap-SC$\left[ 6/7, (6+\epsilon)/7 \right]$ is NP-hard for some $\epsilon>0$
+>gap-WeightedSetCover$\left[ \ell, \ell / \epsilon\right]$ is NP-hard for all $\epsilon>0$ for some $\ell$. Reduce from strong projection label cover instance $\Psi=(G=(L\cup R, E), \Sigma, \{ \Phi_e\}_{e\in E} )$ to a weighted set cover with universe $E\times U$ where $U$ is the size $2^{|\Sigma_R|}$ universe for a collection of sets $A_1,\dots A_{|\Sigma_R|},B_1,\dots B_{|\Sigma_R|}$, and the available sets are $S_{u, \sigma_u} = \cup_{v:(u,v)\in E} \{(u,v)\}\times A_{\phi_{u,v}(\sigma_u)}$ and $S_{v,\sigma_v}=\cup_{u:(u,v)\in E}\{(u,v) \}\times B_{\sigma_v}$, weighted by $|L|/|R|$ to balance things.
+>In fact, this theorem got improved, it's impossible to approximate set-cover within $(1-\epsilon)\log n$
+
+>Maxcut approximation. Known to be NP-hard to approximate to $16/17+\epsilon$, but the best approx algorithm is less than $16/17$. We define a problem where $x_v = \pm 1$ depending on which side of the cut, and then we relax $x_v$ to be a $n$-dimensional vector, and then project these vectors back to $\pm 1$ by selecting a random vector. We end up with $\alpha_{GW} = \min_{z\in \left[-1, 1 \right]} \frac{Arccos(z)/\pi}{(1-z)/2}$ approximation
+
+>**Unique games** - a harder version of strong PCP, where bipartite graph, and there is a 1-1 map $\phi_e:\Sigma\rightarrow \Sigma$ such that $\Phi_e = \{ (\sigma, \phi_e(\sigma)) | \sigma \in \Sigma \}$
+>Unique games conjecture says for all $\epsilon,\delta > 0$, exist $k\in \mathbb{N}$ such that gap_UniqueGames$\left[1-\epsilon, \delta \right]$ is NP-hard on instances with alphabet size at most $k$
+>Implies $\alpha_{GW}+1$ approximation is NP-hard
+>2-to-1 Games Theorem: for all $\epsilon$ exists $k$, gap-UniqueGames$\left[ 1/2, \delta\right]$ is NP-hard with alphabet size at most $k$
+
+### Communication Complexity
+A and B want to compute $f: X\times Y \rightarrow \{0, 1\}$, which they both know
+A knows x and B knows y; they need to know $f(x,y)$
+Let $\Pi$ be a protocol; $CC(\Pi)=\max_{x,y} CC(\Pi(x,y))$; $CC(f)=\min_{\Pi} CC(\Pi)$
+A randomized protocol computes $f: X\times Y \rightarrow \{0, 1\}$ if for all $x,y$ we have $\Pr_{r_A, r_B, r_{pub}}\left[ \Pi(x,y) = f(x,y) \right] \ge 2/3$
+Let $R(f)= \inf_{\Pi \text{ a randomized protocol for }f} \max_{x,y} CC(\Pi(x,y))$ 
+
+**CliqueVsls**$:X\times Y \rightarrow \{0, 1\}$ where $X=Y= \{0, 1\}^{\binom{n}{2}} \times \{0, 1\}^n$. $A$ has $(G,C)$ where $C$ is clique; $B$ has $(G,I)$ where $I$ is independent set. The problem is whether $|C\cap I|=1$. A protocol is
+- if A has $v\in C$ with deg $v$ at most $n/2$, send to B; if B has $v\in I$ with deg v $\ge n / 2$, send to $A$, delete vertices
+
+**DISJ** is $1 - \bigvee_{i=1}^n x_i \land y_i$. The Randomized CC is actually at least $\Omega(n)$. 
+
+**Equality** can be solved in $O(1)$ for random by comparing $\langle x, h\rangle \mod 2$ with $\langle y, h \rangle \mod 2$. Using private randomness, we can make polynomials $A(t)=\sum x_i t^i$, $B(t) = \sum y_i t^i$ and define some prime $p \ge 3n$ to get $O(\log n)$
+
+Let TISP$\left[S, T\right]$ be languages computable by multi-tape TM in time $O(T(n))$ and space $O(S(n))$
+Let $A_0 = \{x0^ny | f(x,y)=0\}, A_1 = \{x0^n y | |x|=|y|=n, f(x,y)=1 \}$. If there's a multi-tape TM $M$ that uses $T(n)$ time and $S(n)$ space and accepts $A_1$ and rejects all strings in $A_0$ then $CC(f)=O(S(n)T(n) / n)$
+- We construct $\Pi$ by $A$ and $B$ simulating $M$ on $x0^n y$ and every time the head of $M$ on input crosses over to other part, $A$ or $B$ sends the work tapes and $M$'s state to the other so they can continue the simulation
+- Consider the language $Palindrom = \{x x^R \}$. If $ST=o(n^2)$ then $Palindrom \not\in TISP(S,T)$. This is because the communication complexity for $f(x,y) = 1_{x = y^R} = \Omega(n)$ 
+
+For lower bounds on single tape TMs, we define a more general notion of CC, randomized-public-coin protocol $\Pi$ has only public randomness, and must have $0$ error.
+Let $A_0 = \{x0^ny | f(x,y)=0\}, A_1 = \{x0^n y | |x|=|y|=n, f(x,y)=1 \}$, and if there is a single tape TM $M$ that uses $T(n)$ time and accepts $A_1$ and rejects $A_0$, then $R_0(f) = O(T(n) / n)$
+- We construct $\Pi$ by $A$ and $B$ simulating $M$ except $A$ and $B$ jointly choose a random $0\le k \le n$ such that $A$ is in charge of the left of $k$ and $B$ is charge of right of $k$ and they only need to pass $M$'s state during crossings since there's 1 tape. The expected number of crossings is at most $T(n)/n$ by pigeonhole
+- As a corollary, any single tape TM for palindrome must have time $\Omega(n^2)$
+
+Circuit lower bounds with communication complexity, for $NC_1$. WLOG fan-in $2$. Let $KW_f = \{ (x, y, i) | f(x) \neq f(y), x_i \neq y_i \}$
+Karchmer-Widgerson game is when A gets $x$ with $f(x)=0$ and B gets $y$ with $f(y)=1$ and the goal is to find $i$ such that $x_i\neq y_i$.
+- If there is a circuit $C$ with fan-in 2 computing $f$ with depth $d(C)$ then the KW game has a protocol with CC $O(d(C))$. This protocol is starting at the output of the circuit and finding input nodes that evaluate differently until we reach one of the inputs
+- It's open to find $f$ where the KW game has lower bounds
+
+Let $f$ be monotone if $x \le y$, then $f(x) \le f(y)$
+Let $M_f = \{ (x,y,i) | f(x) > f(y), x_i > y_i\}$
+KW game of $M_f$ is similar as above, and analogously if $C$ is a monotone circuit with fan-in 2 computing $f$ with depth $d(C)$ then KW game of $f$ has protocol with CC $O(d(C))$
+
+>application of CC to matching
+  Match is whether an undirected graph has a matching of size at least $n/3$. We transform this to a CC problem of finding differences in edges between graphs on $3m$ vertices with $m$ disjoint edges and graphs on $3m$ vertices such that all edges are adjacent to $m-1$ vertices. We transform this into the CC problem of finding a pair out of $m$ pairs that doesn't intersect with $m$ (not $m-1$) vertices which then gets transformed to DISJ and thu sis at most $\Omega(n)$.
+
 

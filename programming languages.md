@@ -247,9 +247,63 @@ jump table for switch statements
 optimizing a for loop by pre-computing the step
 local value numbering uses a hash table to remember previously computed values; superlocal does it for more blocks
 using a shallower tree to do adding
+
+### dataflow
 calculate LIVEOUT recursively on the CFG
 compilers can do "profiling" to get hot paths in CFG
 UEVar - upwards exposed variables (used but not defined here)
 VarKill - variables defined but not used
 LiveOut - value is used after block finishes executing
 
+reaching definition analysis:
+$x\leftarrow y\oplus z$ reaches a use $U$ if $U$ could read $x$ as defined by $x\leftarrow y\oplus z$
+$IN\left[B\right]=\forall B_i\in pred\left[B\right],\cup OUT\left[B_i\right]$
+$OUT\left[ B\right]=(IN\left[B\right] \setminus KILL\left[ B \right])\cup GEN\left[ B \right]$
+KILL are the definitions that block B kills (redefines)
+
+available expressions analysis:
+$x\oplus y$ is available at program point $P$ if all paths from the entry block to $P$ evaluate $x\oplus y$ before reaching $P$ and there are no re-definitions for $x$ or $y$ after the evaluation $x\oplus y$, but before $P$
+$IN\left[B\right]= \forall B_i \in pred\left[B\right], \cap OUT\left[B_i \right]$
+$OUT\left[B\right] = (IN\left[B\right] \setminus KILL\left[B\right])\cup GEN\left[B\right]$
+when smth is killed but also created after, it is counted as GEN and not KILLED
+
+Live variables:
+$x$ is live at program point $P$ if some path from $P$ to the exit block contains a use $U$ of $x$
+There are no re-definitions for $x$ along that path until $U$
+$IN\left[B\right]=USE\left[B\right]\cup (OUT\left[B\right]\setminus DEF\left[B\right])$
+$OUT\left[B\right]=\forall B_i\in succ\left[B\right],\cup IN\left[B_i \right]$
+
+dominance is when node on every path to the node; immediate dominance is node that dominates node but doesn't dominate any other node that dominates node. loops happen by following the start of back edges backwards
+
+loop induction variable is a affine function of loop variable, can be expressed as <b,k,d> meaning variable = b\*k+d ( b is the base variable). there's base and derived induction vars.
+
+lattices are complete if they have a maximal and minimal element and we can find the maximal and minimal element of any subset. meet is like lcm and join is gcd. incomplete lattices can have dataflow that doesn't converge. bottom element $\bot$ represents impossible/no information, and $\top$ means could be either. we can analyze sign, parity, bits with lattices.
+
+
+https://cs.brown.edu/courses/cs033/docs/guides/x64_cheatsheet.pdf
+
+### peephole
+xor a, a faster than loading zero
+lea eax, (rdi + rdi * 4) faster than mul by 5
+```
+int mul_cool(int x) {
+    // 0b100100 = 0b1001 * 0b100
+    return x * 0b100100;
+}
+uint32_t div(uint32_t x) {
+return x / 42069;
+}
+cmov:
+        cmpl    $6110, %edi
+        movl    $12648430, %edx
+        movl    $912559, %eax
+        cmovg   %edx, %eax
+        ret
+movl    %edi, %eax               ; Move 32-bit input x into eax (zero-extends to rax)
+imulq   $836349143, %rax, %rax  ; Multiply x by magic constant (64-bit result in rax)
+shrq    $45, %rax               ; Logical shift right by 45 bits
+retq                            ; Return the result
+https://llvm.org/doxygen/DivisionByConstantInfo_8cpp_source.html
+```
+the redzone is 128byte area below stack pointer guaranteed not to be clobbered (overwritten) by interrupt handlers or signal handlers in leaf functions. can use this space without adjusting stack
+Use -fomit-frame-pointer in optimized builds to get better performance and one more usable register — but avoid it if you care about stack traces

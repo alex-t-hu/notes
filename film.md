@@ -97,6 +97,7 @@ Examples: American Animals (2018), I’m Still Here (2010)
 - Bruce Conner
 	- American artist who worked with assemblage, film, drawing, sculpture, painting, collage, and photography
 	- A Movie (1958) - media spectacle & sensationalism, ironic fascination with destruction, juxtaposition of romance and violence. dramatic orchestral music highlights tension between chaotic visuals and structured emotional cues. considered pioneering work in found footage cinema
+	- crossroads - atomic bomb footage in pacific
 - Lawrence Jordan - known for animated collage films
 - Francis Ford Copolla
 	- Leader of New Hollywood movement 1960s-1980s
@@ -325,6 +326,8 @@ This tension between what is recognizably human and disturbingly other is a hall
 		- icarus falling is not in the main frame
 - Andrei Tarkovsky
 	- Stalker - lead strangers into the Zone. science fiction without any effects.
+		- First scene leads viewers into a cave. Shaking, feels constricted. 
+		- Blur between diegetic and on-diegetic sound. 
 	- durational cinema
 - bela tarr
 	- damnation - 
@@ -364,3 +367,182 @@ This tension between what is recognizably human and disturbingly other is a hall
 	- financial instability leads to violence
 	- very good framing
 	- depends on striking interiors more than landscapes, very elaborate camera movement/long takes
+- George Kuchar
+	- we saw a "film-poem". landscape film. weather, meterological phenomena, UFOs. went to El Reno, Oklohoma to. watch storms, paint/write. "weather diaries" are his weather films. dream journals, writings on UFOs/weather
+- Jean-Marie Straub / Daniele Huillet
+	- communist politics. language/music indistinguishibility.
+	- dialogue is almost sung, words feel like prayers, words are repeated, image is black-white, referencing sculpture-staleness, framing creates dynamic image thrust right at you.
+	- Moses. and Aaron
+	- Sicilia! is a film abt a man returning to Sicily from NY and meeting his mom. His mom did some cheating with some other man? She doesn't like his father
+		- the camera shakes throughout the scene. the dialogue is musical, something else besides the dialogue. shot on an actual train, same sound. v comedic expressions, theatrical
+		- super small blinking/subtle smiling/minute emotional stuff can be captured by cameras, that's what they're interested in 
+		- super long take on the guy to see his gestures. the reaction is witheld
+		- super long shot on the train track, we focus on the birds. similar to oshima, recognizable physical space
+		- **even if you're beating ppl on the head w smart ideas, it still hurts to beat on the head. the film lets you walk out, you can choose whether you want to engage. it's not spectacular or has a strong narrative**
+		- where you cut you could see hidden smile
+	- musicality of Italian language. Before we see his face we see the person's voice. The texture of the sound is important. Magical scene with knife seller at the end - join, non-joy, lists of places/foods, it's very poetic. Often lots of alternating dialogue, poetic.
+	- Resistance to dubbing. "Murdered film". dubbing is very standard in Italy
+	- black meter - 
+	- head room is interesting in this film? sometimes the mother is really high up
+- Nagisa Oshima
+	- yunbogi's diary is abt japan-korea relations
+	- constant repetition of "yungobi, the young children who shines shoes for a living"
+	- identity crisis in families
+	- inspired by the below
+	- there's also a book abt orphans in korea that was translated to japanese to great acclaim, it was the first post-war translation
+	- Boy/shonen
+		- "detachment/isolation" - the boy seems detached
+		- the red imagery, boot on the snow
+		- widescreen (lots of empty space when we see not the whole space being used), stuff was on the side extreme margins on wide screen to depict extreme margins of society
+		- some moments of the film have some black/white filter. "stay with me"
+		- shot in specific locations. the child boy actor has dead parents, chosen carefully by director, relates to the "models"/non-actors of Bresson
+		- the snow scene, the Andromeda galaxy stuff
+		- the kid runs away from parents
+- Masao Adachi
+	- AKA serial killer - humanizes a serial killer
+	- landscapes. don't see the serial killer.
+- Chris Marker (French)
+	- The Koreans
+	- La Jetee - 
+- Mati Diop. France/Senegal
+- Pere Portabella
+	- Vampire Cuadecuc/Cuadecuc, vampir
+		- the look of other ppl makes u interesting
+		- when characters get bit they get more interesting
+		- sound-negative film?
+		- the characters move you, doesn't matter how. only scoring goals matter in soccer
+		- not being able to follow narrative, there is no narrative, film is funny/liberating
+		- winking at camera. zoom towards spectators feels funny. lack of continuity in sound
+		- lack of sound in the film. screeching sound. metallic.
+		- when are things cut is pretty important. he cuts at weird moments
+		- some allegory against Franco
+- Albert Serra
+	- catalan iconoclast
+	- atlantique
+	- tardes de soledad
+		- bull fight is a primal scene of cinema
+		- small microphones planted inside of costumes
+		- zero communication when shooting. life-death situation makes it hyperrealistic
+		- in the car, no possible other place to put camera because no space
+		- in elevator, some low-angle shot
+		- the guy has many costumes but only wore a couple. this enables easier filming.
+		- in bullfights there's 3 aspects of crowd, fighter, bull. why no shots of the crowd? because the crowd is right-wing; the film is not about society, it's about ritual
+		- the scene about undressing. why was it placed where it was? it's a nice transition. shouldn't be near beginning/middle, takes people out of the film. the dressing scene is a cliche. the information is interesting, even for the creator, like how the buttons need machines to be controlled and pull up clothes and fix tie (tie can be dangerous). the man's aesthetic body.
+		- the ending of the film zooms away. it's like end of a dream, the audience becomes real audience not viewers.
+		- sound. quality of film has to be uniform. if not, it feels bad, so need to increase quality
+		- the bullfighter happened to be religious. religion is cliche
+		- to say that smth is not political is political. the film is political
+	- Pacification
+	- actors feel guilty. paid money. artistic pressure. lots of freedom when reading lines, especially long takes. 3 cameras. antagonistic relationship with actors
+- Ted kotcheff
+	- Wake in Fright. there's a brutal kangaroo hunting scene. the film makes a commentary.
+- George Franju
+	- Blood of the beasts. holocaust metaphor?
+- film preservation/film projection
+- brattle theater (bladerunner)
+- Francis Bacon
+	- interested in bull fighting
+- John Grierson
+	- documentary as "the creative treatment of actuality"
+- Artavazd Peleshyan
+	- "structure"
+	- the seasons of the year - relationship between human and nature, vivaldi music dominating
+	- repetition of people washing down the river, the sheep and women compared
+	- no words, minimalistic. images speak for themselves. the first one says tired. language can only take us so far
+	- people in semi-control of haystacks, etc...
+	- there's this ambiguity about finding the person within nature, which reflects the harmony of man and nature
+- Mati Diop
+	- began as actress 35 rhums
+	- mille soleils - innovative, playful approach to cinema
+	- Atlantiques
+		- poetry
+		- the ocean 
+		- darkness
+		- some text
+		- man that could turn into fish, another force out there.
+	- Mahomey
+- film archive
+- the good the bad the ugly, sergio leone
+	- spaghetti western. scratches on the right. sometimes print broken and spliced back together. color is faded
+	- chromatic aberration, slight fuziness on edges
+- film archives
+	- films get damaged after 1000, 10000 showings?? some ppl think film is too valuable/precious to be shown
+	- DCP - digital cinema package
+- Tacita Dean - The Green Ray
+- film noir
+	- 1940s/1950s. fatalistic crime drama
+	- cynical tone, morally ambiguous
+	- exaggerates shadows, dream-like, intense interiority, the idea of danger, dream-like oneiric
+	- dark shadows of the cities themselves. sense of doom awaits death with patience and relief.
+	- antihero. women given strong roles. Femme fatale archetype (seducer)
+	- double indemnity is famous film
+	- laura (1944)
+		- narrated by a voiceover from a deadperson, very interesting
+	- detour (1945) - edgar ulmar
+		- Al ends up killing Vera (he unconsciously wanted to)
+		- voiceover shows disintegration of sanity. whose point of view? is it Al's psychological POV but not his actual POV. is it detective's POV?
+		- B-movie production, the eyes of the woman move after death. camera movement clunky
+		- enters shadows/darkness high contrast symbolizes guilt, descending into madness
+		- 
+	- neo-noir might have spectacle, but perversely
+	- depends on flashback?
+	- operates on the periphery of the star system
+- The Killers
+	- follows Hemingway's The Killer with big fidelity
+	- Robert siodmak
+	- The efficiency of story-telling, very hollywood-like, racing forward to tell the story
+	- the image of the dying man.
+- Bladerunner
+	- neo-noir, tries to transcend time
+	- ciggarete smoke, rain, existential dread, orientalism, fear, voiceover, all noir characteristics
+	- sci-fi is about the present more than the future
+	- harrison ford's voice over sounds like he doesn't wanna be there
+	- film exists in different versions has to do with reality/authenticity themes of the film, replicates/ppl, who's real
+	- originally not happy ending; the ending is footage from the shining; colorado landscape with distortion
+	- Deckard is a bladerunner; he's strong, shining red eyes
+- Apichatpong Weerasethakul
+	- memoria
+	- cinema as speaking with ghosts, spirits
+	- phantasmagoria
+	- blissfully yours - title credits only come until midway, complete narrative freedom
+	- syndromes and a century 
+	- uncle boonmee (part of primitive) who can recall his past lives, spirits with deep souls, not melancholy, transmogrifying
+		- feels slower than slow film
+		- cave is a metaphor for cinema
+	- installation artist
+		- sleepcinemahotel - sleep 
+		- the phantom of gwangju
+- Bruce Baillie
+	- films like poems, without language
+	- castro street - uses standard oil refinery sounds/sights to convey mood
+- etienne gaspard-robert, robertson, belgium, create spirits
+	- photography capable of capturing true spirits
+- nicholas ray
+	- the lusty men - favorite film
+- Satyajit Ray
+	- calcutta trilogy abt Bengali life
+- Cecil B. DeMille
+	- big filmmaker tht was forgotten
+- Mystery of Picasso - clouzot
+- Kubrick
+	- 2001
+		- An der schonen Blauen Donau, Op. 314
+		- strauss the blue danub
+		- kathurian adagio from 
+		- beatup in chessj
+		- parents talk abt raising paycheck, celebrity back home, drawing sketches
+		- 
+- Hot takes
+	- indie films should be supported more
+	- a lot of ppl when going to France make bad films
+	- Entertainment value for films
+	- hollywood used to be great in 30s 50s 70s 
+	- scorse on marvel movies- "That's not cinema. Honestly, the closest I can think of them, as well-made as they are, with actors doing the best they can under the circumstances, is theme parks"
+	- films abt films
+	- films generally shouldn't be remade, a waste
+	- artists don't need to understand things fully that they're making films about
+	- alex zalten japanese cinema
+	- it's a problem that certain films/actors have overinflated reputations
+	- is hollywood dying?
+	- relationship btwn painting and cinema; portugese cinema is influenced by painting, than cinema
+	

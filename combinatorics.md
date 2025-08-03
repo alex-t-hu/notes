@@ -102,3 +102,84 @@ lattice is distributive if it satisfies the two distributive laws: $x\land (y\lo
 a subset $I$ of $P$ is an order ideal if for any $x\in I$ and $y\le x$, $y\in I$
 let $J(P)$ be the poset of all order ideals in $P$ ordered by containment
 $P\rightarrow J(P)$ is 1-1 btwn finite posets and finite distributive lattices
+
+### trees
+$\sum_{|T|=n} x^T = (x_1+\dots x_n)^{n-2}$ where $x^T = \prod_{i=1}^n x_i^{deg_T(i)-1}$
+similarly, $\sum_{T\subset K_{m,n}} wt(T) = (x_1+\dots x_m)^{n-1}\cdot (y_1+\dots y_n)^{m-1}$ where $T$ is a spanning tree of 
+
+prufer code is $n-2$ nums formed by taking away smallest leafs and adding the other node in that edge. we can also define a bipartite prufer code with $m+n-2$ nums
+
+the laplacian is $diag(deg) - A$
+$\tilde{L}$ is $n-1\times n-1$ cofactor; $t(G)=det(\tilde{L})$, and this is same as $1/n$ times prod of non-zero eigenvalues
+> $L=BB^T$ where $B$ is the $n\times m$ matrix reprenting $G$ with $\pm 1$
+   $det(C\cdot D) = \sum det(C_S)det(D_S)$ if $C$ is $k\times m$ and $D$ is $m\times k$ because $det(\tilde{B}_S)$ is $\pm 1$ if $S$ is a spanning tree of $G$ and otherwise $0$
+
+a matrix $B$ is totally unimodular if any minor is either $0,1,-1$ and if every column has two non-zero entries, $\pm 1$, it is totally unimodular
+
+cartesian product of graph is when you connect two pairs of nodes if one pair is equal and the other belongs to the graph. the Hypercube graph of $n$-dimensions is $H_n = H^n$ so it has eigenvalues $\pm 1 ^n$
+
+weighted MTT says $\sum_{\text{T spanning tree}} wt(T) = det(\tilde{L})$ where weight is product of edge weights
+
+arborescence $T$ of $G$ is a directed subgraph where undirected its a spanning tree and directed there's one root $r$ where everything emanates from. $Arb_r(G)$ counts this
+$L=diag(d_1,\dots d_n) - A$ where $d_i$ is indegree
+Directed MTT says for any $r,k$, $Arb_r(G)=L^{kr}$, the $(k,r)$ cofactor of $L$
+
+effective resistance btwn $A$ and $B$, $R_{AB}(G)$, is $\frac{\sum_{\text{T' spanning tree of G'}} wt(T')}{\sum_{\text{T spanning tree of G}} wt(T) }$ where $G'$ is $A$ and $B$ glued together
+
+complementary graph with a root vertex, then any spanning tree $T$ of $G^+$corresponds to rooted forest $F$ of $G$. Then $F_G(x) = \sum_{\text{T spanning tree of G+}}x^{deg_T(0)-1}$ is gen func for number of rooted forests with some number of connected components, and $F_G(x)=(-1)^{n-1}F_{\overline{G}}(-n-x)$ 
+
+### parking functions
+$f:\left[n\right]\rightarrow \left[ n \right]$, car $i$ prefers to park in $f_i$, if not available they'll drive forward to first available
+- $f$ is parking function equiv to for any $k$ there's at most $k$ $f_i$ at least $n-k+1$
+- exists permutation with $f_i \le w_i$
+-  number of weakly increasing parking functions, $f_1\le f_2\dots$ is $C_n$
+Tree/Dyck path bijection
+- $(n+1)^{n-1}$ parking functions - we biject to labeled trees on $n+1$ vertices by drawing a Dyck path by drawing the diagonals and putting $i$ on diagonal $f_i$
+- We construct tree by going through the Dyck path and attaching each vertex to the leftmost open child. We construct Dyck path by doing leftmost DFS and recording children (children may be empty)
+- $p_n(x)=\sum x^{area(P)}=\sum_{f} x^{\binom{n+1}{2}- \sum f_i}=\sum x^{inv(T)}$ where inversions of trees is number of $i<j$ such that $j$ is on the path from root $0$ to $i$
+- Recurrence $I_0(x)=1, I_n(x) = \sum_{k=1}^n \binom{n-1}{k-1}(1+x+\dots x^{k-1})I_{k-1}(x)I_{n-k}(x)$
+
+### alternating permutation
+$w_1<w_2>w_3 \dots$
+$p_n(-1)=A_n$
+$A_n = \sum_{k\ge 1, \text{ k odd}}\binom{n-1}{k-1}A_{k-1}A_{n-k},A_0=1$, $k$ even is true as well
+>EGF - $A(x) = \sum A_n x^n / n!$
+
+$A^{even}(x) = sec(x),A^{odd}(x)=tan(x)$
+Seider-Entringer-Arnold triangle
+1
+0 1
+1 1 0
+0 1 2 2
+...
+the numbers 1,1,1,2,5,16,61 -> $A_n$?
+
+### coloring
+there's a unique poly $\chi_G(t)$ such that $\chi_G(k)$ is number of $k$-colorings
+$\chi_{G}(k)=\chi_{G\setminus e}(k) - \chi_{G / e}(k)$
+$\chi_{K_n}(t) = t(t-1)\dots (t-n+1)$
+
+### acyclic orientations
+number of ways to orient edges of undirected graph such that there's no directed cycles
+$AO(K_n)=2^n-2, AO(F)=2^{|E|},AO(K_n)=n!$
+$AO(G)=(-1)^n \chi_G(-1)$
+$AO(G)=AO(G\setminus e)+AO(G / e)$
+
+### chordal graphs
+every cycle of length at least $4$ has a chord 
+perfect elimination ordering $v_1,\dots$ satisfies the set of all $v_j$, where $j<i$ and $v_j$ adjacent to $v_i$ is a clique
+$\chi_G(t) = \prod_{i=1}^n (t-a_i)$
+### tutte polynomial
+- $T_G(x,y)$ satisfies $T_G = T_{G\setminus e} + T_{G / e}$ for all non-loop and non-bridge
+- for bridge, $T_g=x\cdot T_{G / e}$
+- for loop, $T_G = y\cdot T_{G\setminus e}$
+- $T_G=1$ if $G$ has no edges
+- $W_G(x,y)=\sum_{A\subseteq E}x^{k(A)-k(E)}\cdot y^{k(A)+|A|-|V|}$ whitney's corank-nullity polynomial of $G$, $k(A)$ is number of connected components of $H=(V,A)$
+- $T_G(x,y)=W_G(x-1,y-1)$
+
+
+
+
+
+
+
